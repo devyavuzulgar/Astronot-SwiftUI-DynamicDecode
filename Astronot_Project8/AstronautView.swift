@@ -1,0 +1,36 @@
+//
+//  AstronautView.swift
+//  Astronot_Project8
+//
+//  Created by Yavuz Ulgar on 13.07.2023.
+//
+
+import SwiftUI
+
+struct AstronautView: View {
+    let astronaut: Astronaut
+
+    var body: some View {
+        ScrollView {
+            VStack {
+                Image(astronaut.id)
+                    .resizable()
+                    .scaledToFit()
+
+                Text(astronaut.description)
+                    .padding()
+            }
+        }
+        .background(.darkBackground)
+        .navigationTitle(astronaut.name)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct AstronautView_Previews: PreviewProvider {
+    static var previews: some View {
+        let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+        AstronautView(astronaut: astronauts["aldrin"]!)
+            .preferredColorScheme(.dark)
+    }
+}
